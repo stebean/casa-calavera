@@ -1,0 +1,83 @@
+@import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Space+Grotesk:wght@300;900&family=Inter:wght@400;900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --brand-green: #064e3b;
+    --brand-red: #991b1b;
+    --brand-yellow: #eab308;
+    --brand-paper: #e2e2d5;
+  }
+
+  body {
+    @apply bg-background text-white selection:bg-brand-red selection:text-white;
+    font-family: 'Inter', sans-serif;
+    image-rendering: pixelated;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply uppercase tracking-tighter font-black;
+  }
+}
+
+@layer components {
+  .grain-overlay {
+    @apply fixed inset-0 pointer-events-none z-[9999] opacity-[0.15] mix-blend-multiply;
+    background-image: url("https://www.transparenttextures.com/patterns/cardboard-flat.png");
+  }
+
+  .paper-bg {
+    background-color: var(--brand-paper);
+    background-image: url("https://www.transparenttextures.com/patterns/natural-paper.png");
+    @apply text-black shadow-2xl;
+  }
+
+  .torn-edge-bottom {
+    mask-image: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/172203/mask-torn-edge.png");
+    mask-size: 100% 100%;
+    -webkit-mask-image: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/172203/mask-torn-edge.png");
+    -webkit-mask-size: 100% 100%;
+  }
+
+  .polaroid {
+    @apply bg-white p-4 pb-12 shadow-xl rotate-1 border border-black/10;
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  }
+
+  .polaroid:hover {
+    @apply -rotate-1 scale-105 z-10;
+  }
+
+  .linocut-text {
+    @apply font-black tracking-tighter;
+    text-shadow: 2px 2px 0px rgba(0,0,0,0.2);
+    filter: url(#ink-bleed);
+  }
+
+  .ink-text {
+    filter: url(#ink-bleed);
+    text-shadow: 0.5px 0.5px 0px rgba(0,0,0,0.5);
+  }
+
+  .stamp {
+    @apply border-4 border-current px-4 py-2 uppercase font-black rotate-[-15deg] inline-block opacity-80;
+    mask-image: radial-gradient(circle, transparent 10%, black 100%);
+    mask-size: 4px 4px;
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-zinc-900;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-zinc-700 border-4 border-zinc-900 hover:bg-brand-red transition-colors;
+}
