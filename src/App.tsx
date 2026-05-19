@@ -1,5 +1,5 @@
 import { Routes, Route, useLocation } from 'react-router-dom'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import MainLayout from './layouts/MainLayout'
 import Home from './pages/Home'
 import Gallery from './pages/Gallery'
@@ -8,6 +8,14 @@ import LaCasonaMenu from './pages/menu/LaCasonaMenu'
 import LaGranTostadaMenu from './pages/menu/LaGranTostadaMenu'
 import { InkFilters } from './components/Skulls'
 import CinematicGallery from './components/CinematicGallery'
+
+function ScrollToTop() {
+  const { pathname } = useLocation()
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'instant' })
+  }, [pathname])
+  return null
+}
 
 function App() {
   const [hasPlayedIntro, setHasPlayedIntro] = useState(false)
@@ -20,6 +28,7 @@ function App() {
     <div className="relative min-h-screen selection:bg-brand-red selection:text-white overflow-x-hidden">
       <div className="grain-overlay" />
       <InkFilters />
+      <ScrollToTop />
       
       {showIntro && (
         <CinematicGallery onComplete={() => setHasPlayedIntro(true)} />

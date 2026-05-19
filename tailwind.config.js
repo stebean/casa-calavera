@@ -18,7 +18,7 @@ export default {
       fontFamily: {
         display: ["Space Grotesk", "sans-serif"],
         body: ["Inter", "sans-serif"],
-        hand: ["Permanent Marker", "cursive"], // Added for hand-drawn feel
+        hand: ['"Times New Roman"', "Times", "serif"], // italic serif as handwritten substitute
         serif: ['"Times New Roman"', "Times", "serif"],
         typewriter: ['"Special Elite"', "Courier", "monospace"],
       },
