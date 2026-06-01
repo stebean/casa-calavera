@@ -1,10 +1,10 @@
 import { Outlet } from 'react-router-dom'
 import Navbar from '../components/Navbar'
 
-const MainLayout = ({ hideNavbar = false }: { hideNavbar?: boolean }) => {
+const MainLayout = () => {
   return (
     <div className="flex flex-col min-h-screen">
-      <Navbar isHidden={hideNavbar} />
+      <Navbar isHidden={false} />
       <main className="flex-grow">
         <Outlet />
       </main>
