@@ -13,8 +13,46 @@ const Home = () => {
   const y1 = useTransform(scrollYProgress, [0, 0.25], [0, -100])
   const opacity1 = useTransform(scrollYProgress, [0, 0.2, 0.25], [1, 1, 0])
 
-  const scale2 = useTransform(scrollYProgress, [0.25, 0.5], [0.8, 1])
-  const opacity2 = useTransform(scrollYProgress, [0.25, 0.3, 0.45, 0.5], [0, 1, 1, 0])
+  // Entrance variants
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2,
+        delayChildren: 0.1
+      }
+    }
+  }
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 30, rotate: -2 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      rotate: -3,
+      transition: {
+        type: "spring",
+        stiffness: 100,
+        damping: 15
+      }
+    }
+  }
+
+  const textVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      rotate: 2,
+      transition: {
+        type: "spring",
+        stiffness: 80,
+        damping: 12,
+        delay: 0.4
+      }
+    }
+  }
 
   return (
     <>
@@ -24,10 +62,13 @@ const Home = () => {
         {/* Section 1: Hero - Collage Style */}
         <section className="h-screen w-full flex flex-col items-center justify-center relative overflow-hidden">
           <motion.div
+            variants={containerVariants}
+            initial="hidden"
+            animate="visible"
             style={{ y: y1, opacity: opacity1 }}
             className="relative z-10 text-center px-6"
           >
-            <div className="relative inline-block mb-12 transform -rotate-3">
+            <motion.div variants={itemVariants} className="relative inline-block mb-12 transform">
               <div className="absolute inset-0 bg-brand-paper/40 -rotate-2 -translate-x-2 -translate-y-2 opacity-80" />
               <div className="relative px-12 py-8 border-4 border-black shadow-2xl" style={{ backgroundColor: '#BBBD98' }}>
                 <img src="/source/logotipoCC/logo.svg" alt="Casa Calavera Logo" className="w-32 h-32 mx-auto mb-4" />
@@ -36,11 +77,14 @@ const Home = () => {
                   <span className="text-brand-red">Calavera</span>
                 </h1>
               </div>
-            </div>
+            </motion.div>
 
-            <p className="font-serif italic font-bold text-3xl md:text-6xl text-brand-paper transform rotate-2 ink-text">
+            <motion.p 
+              variants={textVariants}
+              className="font-serif italic font-bold text-3xl md:text-6xl text-brand-paper transform ink-text"
+            >
               Arte, Café y Cultura.
-            </p>
+            </motion.p>
           </motion.div>
 
           {/* Layered Collage Elements */}
