@@ -83,7 +83,7 @@ const Home = () => {
               variants={textVariants}
               className="font-serif italic font-bold text-3xl md:text-6xl text-brand-paper transform ink-text"
             >
-              Arte, Café y Cultura.
+              Café & Arte.
             </motion.p>
           </motion.div>
 
