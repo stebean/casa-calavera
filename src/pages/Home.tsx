@@ -79,7 +79,7 @@ const Home = () => {
               </div>
             </motion.div>
 
-            <motion.p 
+            <motion.p
               variants={textVariants}
               className="font-serif italic font-bold text-3xl md:text-6xl text-brand-paper transform ink-text"
             >
@@ -160,7 +160,7 @@ const Home = () => {
               </div>
               <div className="relative">
                 <div className="stamp border-brand-green text-brand-green mb-4">Horarios</div>
-                <p className="text-2xl font-black uppercase">Lunes: Cerrado<br /><span className='text-3xl font-black'>Martes a Domingo: 4:00 pm a 11:00 pm</span></p>
+                <p className="text-2xl font-black uppercase">Lunes: Cerrado<br /><span className='text-3xl font-black'>Martes a Domingo: 6:00 pm a 12:00 pm</span></p>
               </div>
             </div>
             <div className="mt-16 flex justify-end">
