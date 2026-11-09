@@ -1,95 +1,31 @@
-import { motion, useScroll, useTransform } from 'framer-motion'
-import { useRef } from 'react'
+import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
 import { SkullIcon, SkullDivider, SkullPattern } from '../components/Skulls'
 
 const Home = () => {
-  const containerRef = useRef(null)
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start start", "end end"]
-  })
-
-  const y1 = useTransform(scrollYProgress, [0, 0.25], [0, -100])
-  const opacity1 = useTransform(scrollYProgress, [0, 0.2, 0.25], [1, 1, 0])
-
-  // Entrance variants
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.2,
-        delayChildren: 0.1
-      }
-    }
-  }
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 30, rotate: -2 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      rotate: -3,
-      transition: {
-        type: "spring",
-        stiffness: 100,
-        damping: 15
-      }
-    }
-  }
-
-  const textVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      rotate: 2,
-      transition: {
-        type: "spring",
-        stiffness: 80,
-        damping: 12,
-        delay: 0.4
-      }
-    }
-  }
-
   return (
     <>
-      <div ref={containerRef} className="relative bg-background">
+      <div className="relative bg-background">
         <SkullPattern />
 
-        {/* Section 1: Hero - Collage Style */}
-        <section className="h-screen w-full flex flex-col items-center justify-center relative overflow-hidden">
-          <motion.div
-            variants={containerVariants}
-            initial="hidden"
-            animate="visible"
-            style={{ y: y1, opacity: opacity1 }}
-            className="relative z-10 text-center px-6"
-          >
-            <motion.div variants={itemVariants} className="relative inline-block mb-12 transform">
-              <div className="absolute inset-0 bg-brand-paper/40 -rotate-2 -translate-x-2 -translate-y-2 opacity-80" />
-              <div className="relative px-12 py-8 border-4 border-black shadow-2xl" style={{ backgroundColor: '#BBBD98' }}>
-                <img src="/source/logotipoCC/logo.svg" alt="Casa Calavera Logo" className="w-32 h-32 mx-auto mb-4" />
-                <h1 className="text-6xl md:text-9xl leading-none font-black linocut-text" style={{ color: '#233924' }}>
-                  Casa<br />
-                  <span className="text-brand-red">Calavera</span>
-                </h1>
-              </div>
-            </motion.div>
+        <section className="calavera-hero" aria-labelledby="hero-title">
+          <div className="calavera-hero__skulls" aria-hidden="true">
+            <SkullIcon index={2} className="calavera-hero__skull calavera-hero__skull--top" />
+            <SkullIcon index={4} className="calavera-hero__skull calavera-hero__skull--bottom" />
+            <SkullIcon index={6} className="calavera-hero__skull calavera-hero__skull--left" />
+          </div>
 
-            <motion.p
-              variants={textVariants}
-              className="font-serif italic font-bold text-3xl md:text-6xl text-brand-paper transform ink-text"
-            >
-              Café & Arte.
-            </motion.p>
-          </motion.div>
-
-          {/* Layered Collage Elements */}
-          <div className="absolute top-1/4 left-10 w-48 h-64 bg-zinc-800/50 rotate-[-15deg] opacity-50 torn-edge-bottom" />
-          <div className="absolute bottom-1/4 right-10 w-64 h-80 bg-brand-paper/20 rotate-[10deg] opacity-30 torn-edge-bottom" />
+          <div className="calavera-hero__composition">
+            <div className="calavera-hero__copy">
+              <h1 id="hero-title" className="calavera-hero__title">
+                Casa <span>Calavera</span>
+              </h1>
+              <p className="calavera-hero__tagline">Café &amp; Arte.</p>
+            </div>
+            <div className="calavera-hero__seal">
+              <img src="/source/logotipoCC/logo.svg" alt="" width="225" height="225" />
+            </div>
+          </div>
         </section>
 
         <SkullDivider className="paper-bg -mx-10 rotate-1 relative z-20" />
